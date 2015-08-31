@@ -60,8 +60,10 @@ function write($phpPowerPoint, $filename, $writers)
 		if (!is_null($extension)) {
 			$xmlWriter = IOFactory::createWriter($phpPowerPoint, $writer);
 			// $xmlWriter->save(__DIR__ . "/{$filename}.{$extension}");
-			$xmlWriter->save("/home/guizao/ppts/{$filename}.{$extension}");
-			chmod("/home/guizao/ppts/{$filename}.{$extension}", 0777);
+			// $xmlWriter->save("/home/guizao/ppts/{$filename}.{$extension}");
+			// chmod("/home/guizao/ppts/{$filename}.{$extension}", 0777);
+			$xmlWriter->save("/home2/hd2/ppts/{$filename}.{$extension}");
+			chmod("/home2/hd2/ppts/{$filename}.{$extension}", 0777);
 			// rename(__DIR__ . "/{$filename}.{$extension}", __DIR__ . "/results/{$filename}.{$extension}");
 			// rename("/home/projetos/dev/freezing-bugfixes/tmp/{$filename}.{$extension}",
 			// 			 "/home/projetos/dev/freezing-bugfixes/app/assets/files_generated/relatorios/ppts/{$filename}.{$extension}");
