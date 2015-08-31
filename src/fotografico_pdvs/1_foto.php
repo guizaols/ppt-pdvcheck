@@ -9,7 +9,7 @@
 	use PhpOffice\PhpPowerpoint\Style\Color;
 	include_once '../../vendor/phpoffice/phppowerpoint/src/PhpPowerpoint/functions.php';
 
-	if(!empty($_REQUEST)) {
+	if(!empty($_REQUEST) && !empty($_GET['id'])) {
 		// Create new PHPPresentation object
 		// echo date('H:i:s') . ' Create new PHPPresentation object'.EOL;
 		$objPHPPresentation = new PhpPowerpoint();
@@ -26,7 +26,7 @@
 		$textRun = $shape->createTextRun('RELATÓRIO FOTOGRÁFICO');
 		$textRun->getFont()->setBold(true);
 		$textRun->getFont()->setSize(32);
-		$textRun->getFont()->setColor(new Color( 'FF0000' ));
+		$textRun->getFont()->setColor(new Color('FF0000'));
 
 		// Fotos
 		// $path   = '/home/guizao/projetos/dev/freezing-bugfixes/public/uploads/answer/answer_url_image/';
@@ -43,6 +43,7 @@
 		// }
 
 		$params 	 = $_REQUEST;
+		print_r($params);
 		$report_id = $_GET['id'];
 
 		foreach ($params as $pdv => $fotos) {
@@ -57,7 +58,7 @@
 				$shape->setHeight(75);
 				$shape->setOffsetX(15);
 				$shape->setOffsetY(11);
-				$shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_LEFT );
+				$shape->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
 				$textRun = $shape->createTextRun(str_replace('_', ' ', $pdv));
 				$textRun->getFont()->setBold(true);
 				$textRun->getFont()->setSize(16);
