@@ -94,7 +94,7 @@
 				  $shape = new Drawing();
 			  	$shape->setName($answer_id)
 			    	    ->setDescription($answer_id)
-			    	    ->setPath($path . $answer_id . '/' . $dados[0])
+			    	    ->setPath($path . $answer_id . '/ppt_' . $dados[0])
 			      	  ->setWidth($width)
 			      	  ->setHeight($height)
 			      	  ->setOffsetX($setX1)
