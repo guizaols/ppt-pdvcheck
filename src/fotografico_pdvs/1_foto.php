@@ -43,62 +43,65 @@
 		// }
 
 		$params 	 = $_REQUEST;
-		print_r($params);
+		// print_r($params);
 		$report_id = $_GET['id'];
 
 		foreach ($params as $pdv => $fotos) {
-			$fotos = str_replace('=>', ':', $fotos);
-			$array_fotos = json_decode($fotos);
-			
-			foreach ($array_fotos as $answer_id => $dados) {
-				$currentSlide = createTemplatedSlide($objPHPPresentation);
+			if($pdv != 'id') {
+				$fotos 			 = str_replace('=>', ':', $fotos);
+				$fotos 			 = str_replace("\\", '', $fotos);
+				$array_fotos = json_decode($fotos);
 
-				$shape = $currentSlide->createRichTextShape();
-				$shape->setWidth(915);
-				$shape->setHeight(75);
-				$shape->setOffsetX(15);
-				$shape->setOffsetY(11);
-				$shape->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
-				$textRun = $shape->createTextRun(str_replace('_', ' ', $pdv));
-				$textRun->getFont()->setBold(true);
-				$textRun->getFont()->setSize(16);
-				// $textRun->getFont()->setColor(new Color( 'FF000000' ));
+				foreach ($array_fotos as $answer_id => $dados) {
+					$currentSlide = createTemplatedSlide($objPHPPresentation);
 
-				$shape->createBreak();
-				$shape->createBreak();
+					$shape = $currentSlide->createRichTextShape();
+					$shape->setWidth(915);
+					$shape->setHeight(75);
+					$shape->setOffsetX(15);
+					$shape->setOffsetY(11);
+					$shape->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
+					$textRun = $shape->createTextRun(str_replace('_', ' ', $pdv));
+					$textRun->getFont()->setBold(true);
+					$textRun->getFont()->setSize(16);
+					// $textRun->getFont()->setColor(new Color( 'FF000000' ));
 
-				$textRun = $shape->createTextRun('DATA: ');
-				$textRun->getFont()->setBold(true);
-				$textRun->getFont()->setSize(14);
-				$textRun = $shape->createTextRun($dados[3]);
-				$textRun->getFont()->setSize(14);
+					$shape->createBreak();
+					$shape->createBreak();
 
-				$shape->createBreak();
+					$textRun = $shape->createTextRun('DATA: ');
+					$textRun->getFont()->setBold(true);
+					$textRun->getFont()->setSize(14);
+					$textRun = $shape->createTextRun($dados[3]);
+					$textRun->getFont()->setSize(14);
 
-				$textRun = $shape->createTextRun('QUESTÃO: ');
-				$textRun->getFont()->setBold(true);
-				$textRun->getFont()->setSize(14);
-				$textRun = $shape->createTextRun($dados[3]);
-				$textRun->getFont()->setSize(14);
+					$shape->createBreak();
 
-				$shape->createBreak();
+					$textRun = $shape->createTextRun('QUESTÃO: ');
+					$textRun->getFont()->setBold(true);
+					$textRun->getFont()->setSize(14);
+					$textRun = $shape->createTextRun($dados[3]);
+					$textRun->getFont()->setSize(14);
 
-				$textRun = $shape->createTextRun('PROMOTOR: ');
-				$textRun->getFont()->setBold(true);
-				$textRun->getFont()->setSize(14);
-				$textRun = $shape->createTextRun($dados[2]);
-				$textRun->getFont()->setSize(14);				
+					$shape->createBreak();
 
-			  $shape = new Drawing();
-		  	$shape->setName($answer_id)
-		    	    ->setDescription($answer_id)
-		    	    ->setPath($path . $answer_id . '/' . $dados[0])
-		      	  ->setWidth($width)
-		      	  ->setHeight($height)
-		      	  ->setOffsetX($setX1)
-		      	  ->setOffsetY($setY1);
-		  	// $currentSlide = createTemplatedSlide($objPHPPresentation);
-		  	$currentSlide->addShape($shape);
+					$textRun = $shape->createTextRun('PROMOTOR: ');
+					$textRun->getFont()->setBold(true);
+					$textRun->getFont()->setSize(14);
+					$textRun = $shape->createTextRun($dados[2]);
+					$textRun->getFont()->setSize(14);				
+
+				  $shape = new Drawing();
+			  	$shape->setName($answer_id)
+			    	    ->setDescription($answer_id)
+			    	    ->setPath($path . $answer_id . '/' . $dados[0])
+			      	  ->setWidth($width)
+			      	  ->setHeight($height)
+			      	  ->setOffsetX($setX1)
+			      	  ->setOffsetY($setY1);
+			  	// $currentSlide = createTemplatedSlide($objPHPPresentation);
+			  	$currentSlide->addShape($shape);
+				}
 			}
 		}
 
