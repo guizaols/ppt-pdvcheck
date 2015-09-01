@@ -6,7 +6,9 @@ use PhpOffice\PhpPowerpoint\Autoloader;
 use PhpOffice\PhpPowerpoint\Settings;
 use PhpOffice\PhpPowerpoint\IOFactory;
 
-error_reporting(E_ALL & ~E_NOTICE);
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+// error_reporting(E_ALL & ~E_NOTICE);
 define('CLI', (PHP_SAPI == 'cli') ? true : false);
 define('EOL', CLI ? PHP_EOL : '<br />');
 define('SCRIPT_FILENAME', basename($_SERVER['SCRIPT_FILENAME'], '.php'));
@@ -45,9 +47,9 @@ if ($handle = opendir('.')) {
 /**
  * Write documents
  *
- * @param \PhpOffice\PhpWord\PhpWord $phpWord
- * @param string $filename
- * @param array $writers
+ * param \PhpOffice\PhpWord\PhpWord $phpWord
+ * param string $filename
+ * param array $writers
  */
 function write($phpPowerPoint, $filename, $writers)
 {
@@ -82,7 +84,7 @@ function write($phpPowerPoint, $filename, $writers)
 /**
  * Get ending notes
  *
- * @param array $writers
+ * param array $writers
  */
 function getEndingNotes($writers)
 {
@@ -120,8 +122,8 @@ function getEndingNotes($writers)
 /**
  * Creates a templated slide
  *
- * @param PHPPowerPoint $objPHPPowerPoint
- * @return PHPPowerPoint_Slide
+ * param PHPPowerPoint $objPHPPowerPoint
+ * return PHPPowerPoint_Slide
  */
 function createTemplatedSlide(PhpOffice\PhpPowerpoint\PhpPowerpoint $objPHPPowerPoint)
 {
