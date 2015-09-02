@@ -63,12 +63,12 @@ function write($phpPowerPoint, $filename, $writers) {
 		if (!is_null($extension)) {
 			$xmlWriter = IOFactory::createWriter($phpPowerPoint, $writer);
 			/* DEV */
-			$xmlWriter->save("/home/guizao/ppts/{$filename}.{$extension}");
-			chmod("/home/guizao/ppts/{$filename}.{$extension}", 0777);
+			// $xmlWriter->save("/home/guizao/ppts/{$filename}.{$extension}");
+			// chmod("/home/guizao/ppts/{$filename}.{$extension}", 0777);
 
 			/* PRODUTCTION */
-			// $xmlWriter->save("/home2/hd2/ppts/{$filename}.{$extension}");
-			// chmod("/home2/hd2/ppts/{$filename}.{$extension}", 0777);
+			$xmlWriter->save("/home2/hd2/ppts/{$filename}.{$extension}");
+			chmod("/home2/hd2/ppts/{$filename}.{$extension}", 0777);
 
 			$result = true;
 		// } else {

@@ -29,8 +29,8 @@
 		$textRun->getFont()->setColor(new Color('FF0000'));
 
 		// Fotos
-		$path   = '/home/guizao/projetos/dev/freezing-bugfixes/public/uploads/answer/answer_url_image/';
-		// $path   = '/home2/hd2/sistemas/pdvcheck/producao/freezing-bugfixes/public/uploads/answer/answer_url_image/';
+		// $path   = '/home/guizao/projetos/dev/freezing-bugfixes/public/uploads/answer/answer_url_image/';
+		$path   = '/home2/hd2/sistemas/pdvcheck/producao/freezing-bugfixes/public/uploads/answer/answer_url_image/';
 		$width  = 700;
 		$height = 500;
 
