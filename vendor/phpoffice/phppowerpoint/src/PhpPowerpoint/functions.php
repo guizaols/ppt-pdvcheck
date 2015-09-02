@@ -1,7 +1,12 @@
 <?php
+
 /**
  * Header file
 */
+
+require_once 'Autoloader.php';
+\PhpOffice\PhpPowerpoint\Autoloader::register();
+
 use PhpOffice\PhpPowerpoint\Autoloader;
 use PhpOffice\PhpPowerpoint\Settings;
 use PhpOffice\PhpPowerpoint\IOFactory;
@@ -49,22 +54,23 @@ if ($handle = opendir('.')) {
  * @param string $filename
  * @param array $writers
  */
-function write($phpPowerPoint, $filename, $writers)
-{
+function write($phpPowerPoint, $filename, $writers) {
 	// $result = '';
 	$result = false;
-	
+
 	// Write documents
 	foreach ($writers as $writer => $extension) {
 		if (!is_null($extension)) {
 			$xmlWriter = IOFactory::createWriter($phpPowerPoint, $writer);
 			/* DEV */
-			// $result = $xmlWriter->save("/home/guizao/ppts/{$filename}.{$extension}");
-			// chmod("/home/guizao/ppts/{$filename}.{$extension}", 0777);
+			$xmlWriter->save("/home/guizao/ppts/{$filename}.{$extension}");
+			chmod("/home/guizao/ppts/{$filename}.{$extension}", 0777);
 
 			/* PRODUTCTION */
-			$xmlWriter->save("/home2/hd2/ppts/{$filename}.{$extension}");
-			chmod("/home2/hd2/ppts/{$filename}.{$extension}", 0777);
+			// $xmlWriter->save("/home2/hd2/ppts/{$filename}.{$extension}");
+			// chmod("/home2/hd2/ppts/{$filename}.{$extension}", 0777);
+
+			$result = true;
 		// } else {
 			// $result .= ' ... NOT DONE!';
 		}
@@ -82,8 +88,7 @@ function write($phpPowerPoint, $filename, $writers)
  *
  * @param array $writers
  */
-function getEndingNotes($writers)
-{
+function getEndingNotes($writers) {
 	$result = '';
 
 	// Do not show execution time for index
@@ -121,8 +126,7 @@ function getEndingNotes($writers)
  * @param PHPPowerPoint $objPHPPowerPoint
  * @return PHPPowerPoint_Slide
  */
-function createTemplatedSlide(PhpOffice\PhpPowerpoint\PhpPowerpoint $objPHPPowerPoint)
-{
+function createTemplatedSlide(PhpOffice\PhpPowerpoint\PhpPowerpoint $objPHPPowerPoint) {
 	// Create slide
 	$slide = $objPHPPowerPoint->createSlide();
 	
@@ -141,4 +145,5 @@ function createTemplatedSlide(PhpOffice\PhpPowerpoint\PhpPowerpoint $objPHPPower
 	// Return slide
 	return $slide;
 }
+
 ?>
